@@ -1,4 +1,4 @@
-# learning-vue-no-classes
+# Vue Demo W/ Typescript & No Class Decorators
 
 ## Project setup
 ```

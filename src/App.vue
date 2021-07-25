@@ -1,28 +1,43 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <q-layout view="lHh Lpr lFf">
+    <Notifications/>
+    <MainHeader/>
+    <router-view/>
+  </q-layout>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import {provide, ref} from 'vue';
+import Notifications from "@/components/Notifications/Notifications.vue";
+import NotificationsService from "@/services/notifications.services"
+import MainHeader from "@/components/Headers/MainHeader.vue";
+
+const notificationsService = new NotificationsService();
 
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
-  }
+    MainHeader,
+    Notifications,
+  },
+
+  provide: {
+    notificationsService
+  },
+
+  setup() {
+    provide('NotificationService', notificationsService)
+    return {
+      leftDrawerOpen: ref(false)
+    }
+  },
 }
 </script>
 
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .text-align-center {
+    text-align: center;
+  }
 </style>
